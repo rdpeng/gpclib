@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(gpclib)
-General Polygon Clipper Library for R (version 1.3-2)
+General Polygon Clipper Library for R (version 1.3-3)
 	Type 'class ? gpc.poly' for help
 > 
 > ## Make some random polygons
