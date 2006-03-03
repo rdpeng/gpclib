@@ -1,5 +1,4 @@
 importFrom(graphics, plot)
-import(methods)
 
 exportClasses("gpc.poly", "gpc.poly.nohole")
 

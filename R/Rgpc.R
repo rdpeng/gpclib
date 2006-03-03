@@ -154,12 +154,11 @@ setGeneric("scale.poly", function(x, ...)
 
 setMethod("scale.poly", signature(x = "gpc.poly"), 
           function(x, xscale, yscale = xscale, ...) {
-              x@pts <- lapply(x@pts, function(p)
-                          {
-                              p$x <- p$x / xscale
-                              p$y <- p$y / yscale
-                              p
-                          })
+              x@pts <- lapply(x@pts, function(p) {
+                  p$x <- p$x / xscale
+                  p$y <- p$y / yscale
+                  p
+              })
               x
           })
 
@@ -179,6 +178,8 @@ setMethod("area.poly", signature(object = "gpc.poly"),
                   abs(sum(x.segmat[,1] * x.segmat[,4] - x.segmat[,3]
                           * x.segmat[,2])) / 2
               }
+              if(length(object@pts) == 0)
+                  return(0)
               a <- sapply(object@pts, function(p) area(cbind(p$x, p$y)))
               holeflags <- sapply(object@pts, "[[", "hole")
               sum(a[!holeflags]) - sum(a[holeflags])

@@ -1,6 +1,6 @@
 .onLoad <- function(lib, pkg) {
-    if(!require(methods))
-        stop(sQuote("methods"), " package is required for ", sQuote("gpclib"))
+    if(!require(methods, quietly = TRUE))
+        stop("'methods' package is required for 'gpclib'")
 }
 
 .onAttach <- function(lib, pkg) {
@@ -8,5 +8,5 @@
     msg <- paste("General Polygon Clipper Library for R (version ",
                  as.character(ver), ")", sep = "")
     writeLines(strwrap(msg))
-    cat(gettext("\tType", sQuote("class ? gpc.poly"), "for help\n"))
+    cat("\tType 'class ? gpc.poly' for help\n")
 }
