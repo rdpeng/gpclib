@@ -1,0 +1,133 @@
+
+R : Copyright 2005, The R Foundation for Statistical Computing
+Version 2.2.1  (2005-12-20 r36812)
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(gpclib)
+General Polygon Clipper Library for R (version 1.3-2)
+	Type 'class ? gpc.poly' for help
+> 
+> ## Make some random polygons
+> set.seed(100)
+> a <- cbind(rnorm(100), rnorm(100))
+> a <- a[chull(a), ]
+> 
+> ## Convert `a' from matrix to "gpc.poly"
+> a <- as(a, "gpc.poly")
+> show(a)
+GPC Polygon
+   Num. Contours:  1 
+   Num. Vertices:  9 
+   BBox (X):  -2.271925 --> 2.581959 
+   BBox (Y):  -2.136494 --> 2.168600 
+> 
+> b <- cbind(rnorm(100), rnorm(100))
+> b <- as(b[chull(b), ], "gpc.poly")
+> show(b)
+GPC Polygon
+   Num. Contours:  1 
+   Num. Vertices:  9 
+   BBox (X):  -3.020814 --> 2.727888 
+   BBox (Y):  -2.676379 --> 3.304151 
+> 
+> ## More complex polygons with an intersection
+> p1 <- read.polyfile(system.file("poly-ex/ex-poly1.txt", package = "gpclib"))
+> p2 <- read.polyfile(system.file("poly-ex/ex-poly2.txt", package = "gpclib"))
+> 
+> ## Plot both polygons and highlight their intersection in red
+> plot(app <- append.poly(p1, p2))
+> show(app)
+GPC Polygon
+   Num. Contours:  2 
+   BBox (X):  316.1636 --> 319.2698 
+   BBox (Y):  91.66837 --> 93.8952 
+> plot(int <- intersect(p1, p2), poly.args = list(col = 2), add = TRUE)
+> show(int)
+GPC Polygon
+   Num. Contours:  2 
+   BBox (X):  317.0437 --> 318.0591 
+   BBox (Y):  91.81092 --> 93.14354 
+> 
+> ## Highlight the difference p1 \ p2 in green
+> plot(sdif <- setdiff(p1, p2), poly.args = list(col = 3), add = TRUE)
+> show(sdif)
+GPC Polygon
+   Num. Contours:  1 
+   Num. Vertices:  112 
+   BBox (X):  316.1636 --> 317.9963 
+   BBox (Y):  91.66837 --> 93.8952 
+> 
+> ## Highlight the difference p2 \ p1 in blue
+> plot(sdif <- setdiff(p2, p1), poly.args = list(col = 4), add = TRUE)
+> str(sdif)
+Formal class 'gpc.poly' [package "gpclib"] with 1 slots
+  ..@ pts:List of 1
+  .. ..$ :List of 3
+  .. .. ..$ x   : num [1:71] 319 319 319 319 319 ...
+  .. .. ..$ y   : num [1:71] 93.3 93.2 93.0 92.9 92.8 ...
+  .. .. ..$ hole: logi FALSE
+> 
+> ## Plot the union of the two polygons
+> plot(un <- union(p1, p2))
+> str(un)
+Formal class 'gpc.poly' [package "gpclib"] with 1 slots
+  ..@ pts:List of 2
+  .. ..$ :List of 3
+  .. .. ..$ x   : num [1:120] 318 318 318 318 318 ...
+  .. .. ..$ y   : num [1:120] 93.8 93.7 93.6 93.4 93.3 ...
+  .. .. ..$ hole: logi FALSE
+  .. ..$ :List of 3
+  .. .. ..$ x   : num [1:24] 318 318 318 318 318 ...
+  .. .. ..$ y   : num [1:24] 93.1 93.0 93.0 92.9 92.9 ...
+  .. .. ..$ hole: logi TRUE
+> 
+> ## Take the non-intersect portions and create a new polygon
+> ## combining the two contours
+> p.comb <- append.poly(setdiff(p1, p2), setdiff(p2, p1))
+> str(p.comb)
+Formal class 'gpc.poly' [package "gpclib"] with 1 slots
+  ..@ pts:List of 2
+  .. ..$ :List of 3
+  .. .. ..$ x   : num [1:112] 318 318 318 318 318 ...
+  .. .. ..$ y   : num [1:112] 93.8 93.7 93.6 93.4 93.3 ...
+  .. .. ..$ hole: logi FALSE
+  .. ..$ :List of 3
+  .. .. ..$ x   : num [1:71] 319 319 319 319 319 ...
+  .. .. ..$ y   : num [1:71] 93.3 93.2 93.0 92.9 92.8 ...
+  .. .. ..$ hole: logi FALSE
+> 
+> 
+> 
+> ## Coerce from a matrix
+> x <- 
++ structure(c(0.0934073560027759, 0.192713393476752, 0.410062456627342, 
++ 0.470020818875781, 0.41380985426787, 0.271408743927828, 0.100902151283831, 
++ 0.0465648854961832, 0.63981588032221, 0.772382048331416,
++ 0.753739930955121, 0.637744533947066, 0.455466052934407,
++ 0.335327963176065, 0.399539700805524, 
++ 0.600460299194476), .Dim = c(8, 2))
+> y <- 
++ structure(c(0.404441360166551, 0.338861901457321, 0.301387925052047, 
++ 0.404441360166551, 0.531852879944483, 0.60117973629424, 0.625537820957668, 
++ 0.179976985040276, 0.341542002301496, 0.445109321058688,
++ 0.610817031070196, 0.596317606444189, 0.459608745684695,
++ 0.215189873417722), .Dim = c(7, 2))
+> 
+> x1 <- as(x, "gpc.poly")
+> y1 <- as(y, "gpc.poly")
+> 
+> plot(append.poly(x1, y1))
+> plot(intersect(x1, y1), poly.args = list(col = 2), add = TRUE)
+> 
