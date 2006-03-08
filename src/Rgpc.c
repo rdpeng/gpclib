@@ -5,21 +5,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include <Rdefines.h>
 #include "gpc.h"
-
-/* These macros are copied from the GPC C code */
-#ifndef MALLOC
-#define MALLOC(p, b, s)    {if ((b) > 0) { \
-                            p= malloc(b); if (!(p)) { \
-                            fprintf(stderr, "gpc malloc failure: %s\n", s); \
-		            exit(0);}} else p= NULL;}
-#endif
-
-#ifndef FREE
-#define FREE(p)            {if (p) {free(p); (p)= NULL;}}
-#endif
-
 
 static int compute_polygon_size(gpc_polygon *p);
 static void gpc_polygon_to_double(double *a, int na, gpc_polygon *p);
@@ -32,18 +18,17 @@ SEXP Rgpc_polygon_clip(SEXP subjpoly, SEXP clippoly, SEXP op) {
     int polysize, nsubj, nclip, iop;
     SEXP returnval;
     double *xreturnval;
-    double *xsubjpoly, *xclippoly, *xop;
+    double *xsubjpoly, *xclippoly;
     
-    PROTECT(subjpoly = AS_NUMERIC(subjpoly));
-    PROTECT(clippoly = AS_NUMERIC(clippoly));
-    PROTECT(op = AS_NUMERIC(op));
-    nsubj = LENGTH(subjpoly);
-    nclip = LENGTH(clippoly);
-
-    xsubjpoly = NUMERIC_POINTER(subjpoly);
-    xclippoly = NUMERIC_POINTER(clippoly);
-    xop = NUMERIC_POINTER(op);
-    iop = (int) *xop;
+    PROTECT(subjpoly = coerceVector(subjpoly, REALSXP));
+    PROTECT(clippoly = coerceVector(clippoly, REALSXP));
+    PROTECT(op = coerceVector(op, REALSXP));
+    nsubj = length(subjpoly);
+    nclip = length(clippoly);
+    
+    xsubjpoly = REAL(subjpoly);
+    xclippoly = REAL(clippoly);
+    iop = INTEGER(op)[0];
 
     double_to_gpc_polygon(&subject, xsubjpoly, nsubj);
     double_to_gpc_polygon(&clip, xclippoly, nclip);
@@ -57,14 +42,17 @@ SEXP Rgpc_polygon_clip(SEXP subjpoly, SEXP clippoly, SEXP op) {
   
     polysize = compute_polygon_size(&result);
 
-    PROTECT(returnval = NEW_NUMERIC(polysize));
-    xreturnval = NUMERIC_POINTER(returnval);
+    PROTECT(returnval = allocVector(REALSXP, polysize));
+    xreturnval = REAL(returnval);
 
     gpc_polygon_to_double(xreturnval, polysize, &result);
-
-    gpc_free_polygon(&subject);
-    gpc_free_polygon(&clip);
+    
+    /*
+      gpc_free_polygon(&subject);
+      gpc_free_polygon(&clip);
+    */
     gpc_free_polygon(&result);
+
 
     UNPROTECT(4);
 
@@ -80,17 +68,12 @@ static void double_to_gpc_polygon(gpc_polygon *p, double *a, int na)
     int i, j, k;
 
     p->num_contours = a[0];
-    /*
-      MALLOC(p->hole, p->num_contours * sizeof(int), "hole flag array creation");
-      MALLOC(p->contour, p->num_contours * sizeof(gpc_vertex_list), "contour creation");
-    */
     p->hole = (int *)R_alloc(p->num_contours, sizeof(int));
     p->contour = (gpc_vertex_list *)R_alloc(p->num_contours, sizeof(gpc_vertex_list));
     i = 1;
   
     for(j=0; j < p->num_contours; j++) {
 	p->contour[j].num_vertices = a[i++];    
-	/* MALLOC(p->contour[j].vertex, p->contour[j].num_vertices * sizeof(gpc_vertex), "vertex creation"); */
 	p->contour[j].vertex = (gpc_vertex *)R_alloc(p->contour[j].num_vertices, 
 						     sizeof(gpc_vertex));
 	p->hole[j] = (int) a[i++];
