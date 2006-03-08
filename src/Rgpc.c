@@ -17,15 +17,14 @@ SEXP Rgpc_polygon_clip(SEXP subjpoly, SEXP clippoly, SEXP op) {
     gpc_polygon subject, clip, result;
     int polysize, nsubj, nclip, iop;
     SEXP returnval;
-    double *xreturnval;
-    double *xsubjpoly, *xclippoly;
+    double *xsubjpoly, *xclippoly, *xreturnval;
     
     PROTECT(subjpoly = coerceVector(subjpoly, REALSXP));
     PROTECT(clippoly = coerceVector(clippoly, REALSXP));
     PROTECT(op = coerceVector(op, REALSXP));
+
     nsubj = length(subjpoly);
     nclip = length(clippoly);
-    
     xsubjpoly = REAL(subjpoly);
     xclippoly = REAL(clippoly);
     iop = INTEGER(op)[0];
