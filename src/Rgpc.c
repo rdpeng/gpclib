@@ -80,13 +80,19 @@ static void double_to_gpc_polygon(gpc_polygon *p, double *a, int na)
     int i, j, k;
 
     p->num_contours = a[0];
-    MALLOC(p->hole, p->num_contours * sizeof(int), "hole flag array creation");
-    MALLOC(p->contour, p->num_contours * sizeof(gpc_vertex_list), "contour creation");
+    /*
+      MALLOC(p->hole, p->num_contours * sizeof(int), "hole flag array creation");
+      MALLOC(p->contour, p->num_contours * sizeof(gpc_vertex_list), "contour creation");
+    */
+    p->hole = (int *)R_alloc(p->num_contours, sizeof(int));
+    p->contour = (gpc_vertex_list *)R_alloc(p->num_contours, sizeof(gpc_vertex_list));
     i = 1;
   
     for(j=0; j < p->num_contours; j++) {
 	p->contour[j].num_vertices = a[i++];    
-	MALLOC(p->contour[j].vertex, p->contour[j].num_vertices * sizeof(gpc_vertex), "vertex creation");
+	/* MALLOC(p->contour[j].vertex, p->contour[j].num_vertices * sizeof(gpc_vertex), "vertex creation"); */
+	p->contour[j].vertex = (gpc_vertex *)R_alloc(p->contour[j].num_vertices, 
+						     sizeof(gpc_vertex));
 	p->hole[j] = (int) a[i++];
 
 	for(k=0; k < p->contour[j].num_vertices; k++) {
