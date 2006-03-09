@@ -21,7 +21,7 @@ SEXP Rgpc_polygon_clip(SEXP subjpoly, SEXP clippoly, SEXP op) {
     
     PROTECT(subjpoly = coerceVector(subjpoly, REALSXP));
     PROTECT(clippoly = coerceVector(clippoly, REALSXP));
-    PROTECT(op = coerceVector(op, REALSXP));
+    PROTECT(op = coerceVector(op, INTSXP));
 
     nsubj = length(subjpoly);
     nclip = length(clippoly);
