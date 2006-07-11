@@ -5,8 +5,8 @@
 
 .onAttach <- function(lib, pkg) {
     ver <- read.dcf(file.path(lib,pkg,"DESCRIPTION"), "Version")
-    msg <- paste("General Polygon Clipper Library for R (version ",
-                 as.character(ver), ")", sep = "")
+    msg <- gettextf("General Polygon Clipper Library for R (version %s)",
+                    as.character(ver))
     writeLines(strwrap(msg))
-    cat("\tType 'class ? gpc.poly' for help\n")
+    cat(gettext("\tType 'class ? gpc.poly' for help\n"))
 }

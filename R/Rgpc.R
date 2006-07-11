@@ -127,7 +127,7 @@ setMethod("[", "gpc.poly",
 setAs("matrix", "gpc.poly",
       function(from, to) {
           if(ncol(from) > 2)
-              stop("Matrix must have 2 columns")
+              stop("matrix must have 2 columns")
           p <- list(x = from[,1], y = from[,2], hole = FALSE)
           new("gpc.poly", pts = list(p))
       })
@@ -206,7 +206,7 @@ setAs("numeric", "gpc.poly.nohole",
           ## The shortest a vector can be is 8 numbers:  1. Num. Contours;
           ## 2. Num pts for first contour; and three vertices
           if(length(from) < 8)
-              stop("Numeric vector not long enough")
+              stop("numeric vector not long enough")
           expand.poly <- function(x) {
               ## `x' is just a long vector of numbers with a special format
               num.contours <- x[1]; x <- x[-1]
@@ -229,7 +229,7 @@ setAs("numeric", "gpc.poly",
           ## The shortest a vector can be is 9 numbers:  1. Num. Contours;
           ## 2. Num pts for first contour; 3. hole flag; and three vertices
           if(length(from) < 9)
-              stop("Numeric vector not long enough")
+              stop("numeric vector not long enough")
           expand.poly <- function(x) {
               num.contours <- x[1]; x <- x[-1]
               polyfile <- x
@@ -269,7 +269,7 @@ setAs("gpc.poly", "numeric",
 setAs("gpc.poly", "matrix",
       function(from, to) {
           if(length(from@pts) > 1)
-              stop("Can only convert a single contour into a matrix")
+              stop("can only convert a single contour into a matrix")
           pts <- from@pts[[1]]
           m <- cbind(x = pts$x, y = pts$y)
       })
@@ -290,7 +290,7 @@ read.polyfile <- function(filename, nohole = TRUE) {
 
 write.polyfile <- function(poly, filename = "GPCpoly.txt") {    
     if(!is(poly, "gpc.poly"))
-        stop(sQuote("poly"), " should be of class ", dQuote("gpc.poly"))
+        stop("'poly' should be of class \"gpc.poly\"")
     outfile <- file(filename)
     open(outfile, open = "w")
 
