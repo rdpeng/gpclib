@@ -9,4 +9,4 @@ Author:  Roger D. Peng <rpeng@jhsph.edu>; GPC library by Alan Murta
 Maintainer:  Roger D. Peng <rpeng@jhsph.edu>
 Description:  General polygon clipping routines for R based on Alan Murta's C library
 License:  Free for non-commercial use; commercial use prohibited (see the files `gpc.c' and `gpc.h' for details)
-URL:  http://sandybox.typepad.com/software/ http://www.cs.man.ac.uk/aig/staff/alan/software/
+URL:  http://www.cs.man.ac.uk/~toby/alan/software/
