@@ -17,6 +17,8 @@
 \alias{setdiff,gpc.poly,gpc.poly-method}
 \alias{show,gpc.poly-method}
 \alias{union,gpc.poly,gpc.poly-method}
+\alias{tristrip,gpc.poly-method}
+\alias{triangulate,gpc.poly-method}
 
 \title{Class "gpc.poly"}
 \description{
@@ -60,6 +62,10 @@
       coordinates by amount \code{xscale} and \code{yscale}.  By default
       \code{xscale} equals \code{yscale}.}
     \item{union}{\code{signature(x = "gpc.poly", y = "gpc.poly")}: ... }
+    \item{tristrip}{\code{signature(x = "gpc.poly")}: ... }
+    \item{triangulate}{\code{signature(x = "gpc.poly")}: ... }
+
+
   }
 }
 \author{Roger D. Peng}
@@ -104,8 +110,6 @@ plot(union(p1, p2))
 p.comb <- append.poly(setdiff(p1, p2), setdiff(p2, p1))
 plot(p.comb, poly.args = list(col = 2, border = 0))
 
-
-
 ## Coerce from a matrix
 x <- 
 structure(c(0.0934073560027759, 0.192713393476752, 0.410062456627342, 
@@ -126,5 +130,13 @@ y1 <- as(y, "gpc.poly")
 
 plot(append.poly(x1, y1))
 plot(intersect(x1, y1), poly.args = list(col = 2), add = TRUE)
+
+## Show the triangulation
+plot(append.poly(x1, y1))
+triangles <- triangulate(append.poly(x1,y1))
+for (i in 0:(nrow(triangles)/3 - 1)) 
+    polygon(triangles[3*i + 1:3,], col="lightblue")
+
+
 }
 \keyword{classes}
