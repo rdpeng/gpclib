@@ -9,17 +9,6 @@
 #include "gpc.h"
 
 /* These macros are copied from the GPC C code */
-#ifndef MALLOC
-#define MALLOC(p, b, s)    {if ((b) > 0) { \
-                            p= malloc(b); if (!(p)) { \
-                            fprintf(stderr, "gpc malloc failure: %s\n", s); \
-		            exit(0);}} else p= NULL;}
-#endif
-
-#ifndef FREE
-#define FREE(p)            {if (p) {free(p); (p)= NULL;}}
-#endif
-
 
 static int compute_polygon_size(gpc_polygon *p);
 static void gpc_polygon_to_double(double *a, int na, gpc_polygon *p);
@@ -61,9 +50,12 @@ SEXP Rgpc_polygon_clip(SEXP subjpoly, SEXP clippoly, SEXP op) {
     xreturnval = NUMERIC_POINTER(returnval);
 
     gpc_polygon_to_double(xreturnval, polysize, &result);
-
-    gpc_free_polygon(&subject);
-    gpc_free_polygon(&clip);
+    
+    /* Don't need to free when using R_alloc */
+    /*
+      gpc_free_polygon(&subject);
+      gpc_free_polygon(&clip);
+    */
     gpc_free_polygon(&result);
 
     UNPROTECT(4);
@@ -99,8 +91,11 @@ SEXP Rgpc_polygon_to_tristrip(SEXP poly) {
 	    xstrip[2*j+1] = tristrip.strip[i].vertex[j].y;
 	}
     }
-
-    gpc_free_polygon(&subject);
+    
+    /* Don't need to free when using R_alloc */
+    /* 
+       gpc_free_polygon(&subject);
+    */
     gpc_free_tristrip(&tristrip);
 
     UNPROTECT(2);
@@ -116,13 +111,14 @@ static void double_to_gpc_polygon(gpc_polygon *p, double *a, int na)
     int i, j, k;
 
     p->num_contours = a[0];
-    MALLOC(p->hole, p->num_contours * sizeof(int), "hole flag array creation");
-    MALLOC(p->contour, p->num_contours * sizeof(gpc_vertex_list), "contour creation");
+    p->hole = (int *)R_alloc(p->num_contours, sizeof(int));
+    p->contour = (gpc_vertex_list *)R_alloc(p->num_contours, sizeof(gpc_vertex_list));
     i = 1;
   
     for(j=0; j < p->num_contours; j++) {
 	p->contour[j].num_vertices = a[i++];    
-	MALLOC(p->contour[j].vertex, p->contour[j].num_vertices * sizeof(gpc_vertex), "vertex creation");
+	p->contour[j].vertex = (gpc_vertex *)R_alloc(p->contour[j].num_vertices, 
+						     sizeof(gpc_vertex));
 	p->hole[j] = (int) a[i++];
 
 	for(k=0; k < p->contour[j].num_vertices; k++) {

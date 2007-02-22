@@ -2,8 +2,8 @@ Package:  gpclib
 Depends:  R (>= 2.4.1), methods
 Imports:  graphics
 LazyLoad:  yes
-Version:  1.4
-Date:  2007-02-14
+Version:  1.4-1
+Date:  2007-02-22
 Title:  General Polygon Clipping Library for R
 Author:  Roger D. Peng <rpeng@jhsph.edu> with contributions from Duncan Murdoch; GPC library by Alan Murta
 Maintainer:  Roger D. Peng <rpeng@jhsph.edu>
