@@ -135,8 +135,17 @@ setGeneric("triangulate", function(x)
 setMethod("triangulate", signature(x = "gpc.poly"),
           function(x) {
 	      tristrip <- tristrip(x)
-	      triangles <- lapply(tristrip, function(strip) 
-	                          strip[1:3 + rep(0:(nrow(strip)-3), each=3), ])
+	      triangles <- lapply(tristrip, 
+	                     function(strip) {
+	                          n <- nrow(strip)
+	                          if (n > 3)
+	                              result <- strip[c(1:3,4:2) + 2*rep(0:(n %/% 2 - 2), each=6), ]
+	                          else
+	                              result <- strip[0,]
+	                          if (n %% 2 && n > 2) result <- rbind(result, strip[1:3 + n - 3,])
+	                          return(result)
+	                          })
+	                          
 	      do.call(rbind, triangles)
 	  })
 

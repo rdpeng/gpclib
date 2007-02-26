@@ -62,3 +62,9 @@ y1 <- as(y, "gpc.poly")
 
 plot(append.poly(x1, y1))
 plot(intersect(x1, y1), poly.args = list(col = 2), add = TRUE)
+
+
+## Show the triangulation
+plot(append.poly(x1, y1))
+triangles <- triangulate(append.poly(x1,y1))
+print(triangles)
