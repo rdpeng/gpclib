@@ -1,6 +1,6 @@
 
-R version 2.7.0 (2008-04-22)
-Copyright (C) 2008 The R Foundation for Statistical Computing
+R version 2.9.0 Patched (--)
+Copyright (C)  The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -16,8 +16,9 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(gpclib)
-General Polygon Clipper Library for R (version 1.4-2)
+General Polygon Clipper Library for R (version 1.4-3)
 	Type 'class ? gpc.poly' for help
+
 > 
 > ## Make some random polygons
 > set.seed(100)
@@ -76,7 +77,7 @@ Formal class 'gpc.poly' [package "gpclib"] with 1 slots
   ..@ pts:List of 1
   .. ..$ :List of 3
   .. .. ..$ x   : num [1:71] 319 319 319 319 319 ...
-  .. .. ..$ y   : num [1:71] 93.3 93.2 93.0 92.9 92.8 ...
+  .. .. ..$ y   : num [1:71] 93.3 93.2 93 92.9 92.8 ...
   .. .. ..$ hole: logi FALSE
 > 
 > ## Plot the union of the two polygons
@@ -90,7 +91,7 @@ Formal class 'gpc.poly' [package "gpclib"] with 1 slots
   .. .. ..$ hole: logi FALSE
   .. ..$ :List of 3
   .. .. ..$ x   : num [1:24] 318 318 318 318 318 ...
-  .. .. ..$ y   : num [1:24] 93.1 93.0 93.0 92.9 92.9 ...
+  .. .. ..$ y   : num [1:24] 93.1 93 93 92.9 92.9 ...
   .. .. ..$ hole: logi TRUE
 > 
 > ## Take the non-intersect portions and create a new polygon
@@ -105,7 +106,7 @@ Formal class 'gpc.poly' [package "gpclib"] with 1 slots
   .. .. ..$ hole: logi FALSE
   .. ..$ :List of 3
   .. .. ..$ x   : num [1:71] 319 319 319 319 319 ...
-  .. .. ..$ y   : num [1:71] 93.3 93.2 93.0 92.9 92.8 ...
+  .. .. ..$ y   : num [1:71] 93.3 93.2 93 92.9 92.8 ...
   .. .. ..$ hole: logi FALSE
 > 
 > 
