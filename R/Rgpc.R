@@ -327,8 +327,8 @@ read.polyfile <- function(filename, nohole = TRUE) {
 write.polyfile <- function(poly, filename = "GPCpoly.txt") {    
     if(!is(poly, "gpc.poly"))
         stop("'poly' should be of class 'gpc.poly'")
-    outfile <- file(filename)
-    open(outfile, open = "w")
+    outfile <- file(filename, "w")
+    on.exit(close(outfile))
 
     num.contours <- length(poly@pts)   
     cat(num.contours, "\n", file = outfile)
@@ -342,7 +342,6 @@ write.polyfile <- function(poly, filename = "GPCpoly.txt") {
                 file = outfile, append = TRUE)       
         write(t(m), file = outfile, ncolumns = 2, append = TRUE)
     }
-    close(outfile)
 }
 
 
