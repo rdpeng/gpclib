@@ -1,4 +1,4 @@
-library(gpclib)
+suppressMessages(library(gpclib))
 
 ## Make some random polygons
 set.seed(100)

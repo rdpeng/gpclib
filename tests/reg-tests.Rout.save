@@ -1,5 +1,5 @@
 
-R version 2.9.0 Patched (--)
+R version 2.10.1 Patched (--)
 Copyright (C)  The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -15,10 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library(gpclib)
-General Polygon Clipper Library for R (version 1.4-4)
-	Type 'class ? gpc.poly' for help
-
+> suppressMessages(library(gpclib))
 > 
 > ## Make some random polygons
 > set.seed(100)
