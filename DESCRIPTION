@@ -5,7 +5,7 @@ LazyLoad:  yes
 Version:  1.5
 Date:  2010-02-01
 Title:  General Polygon Clipping Library for R
-Author:  Roger D. Peng <rpeng@jhsph.edu> with contributions from Duncan Murdoch; GPC library by Alan Murta
+Author:  Roger D. Peng <rpeng@jhsph.edu> with contributions from Duncan Murdoch and Barry Rowlingson; GPC library by Alan Murta
 Maintainer:  Roger D. Peng <rpeng@jhsph.edu>
 Description:  General polygon clipping routines for R based on Alan Murta's C library
 License:  file LICENSE
