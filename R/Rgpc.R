@@ -232,7 +232,7 @@ setMethod("get.pts", signature(object = "gpc.poly"),
 ## without holes have different file formats
 
 setAs("numeric", "gpc.poly.nohole", 
-      function(from, to) {
+      function(from) {
           ## The shortest a vector can be is 8 numbers:  1. Num. Contours;
           ## 2. Num pts for first contour; and three vertices
           if(length(from) < 8)
@@ -255,7 +255,7 @@ setAs("numeric", "gpc.poly.nohole",
       })
 
 setAs("numeric", "gpc.poly", 
-      function(from, to) {
+      function(from) {
           ## The shortest a vector can be is 9 numbers:  1. Num. Contours;
           ## 2. Num pts for first contour; 3. hole flag; and three vertices
           if(length(from) < 9)
@@ -283,7 +283,7 @@ setAs("numeric", "gpc.poly",
 ##
 
 setAs("gpc.poly", "numeric",
-      function(from, to) {
+      function(from) {
           flatten.poly <- function(poly) {
               num.contours <- length(poly@pts)
               flat <- lapply(poly@pts, function(p)
@@ -297,7 +297,7 @@ setAs("gpc.poly", "numeric",
       })
 
 setAs("gpc.poly", "matrix",
-      function(from, to) {
+      function(from) {
           if(length(from@pts) > 1)
               stop("Can only convert a single contour into a matrix")
           pts <- from@pts[[1]]
