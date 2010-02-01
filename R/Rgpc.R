@@ -1,5 +1,5 @@
 ## gpclib:  General Polygon Clipping library for R
-## Copyright (C) 2003-2004 Roger D. Peng <rpeng@jhsph.edu>
+## Copyright (C) 2003-2010 Roger D. Peng <rpeng@jhsph.edu>
 
 
 ## R functions for using GPC library and manipulating polygons
