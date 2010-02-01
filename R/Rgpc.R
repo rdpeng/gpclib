@@ -304,9 +304,14 @@ setAs("gpc.poly", "matrix",
           m <- cbind(x = pts$x, y = pts$y)
       })
 
+## 'from' is a list(x = ..., y = ...)
 
 setAs("list", "gpc.poly",
       function(from) {
+              if(!(names(from) %in% c("x", "y")))
+                      stop("list should have names 'x' and 'y'")
+              if(length(from$x) != length(from$y))
+                      stop("'x' and 'y' elements should have the same length")
               as(cbind(from$x,from$y), "gpc.poly")
       })
 
