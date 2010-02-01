@@ -314,12 +314,11 @@ setAs("list", "gpc.poly",
 ## Read a polygon from a file
 
 read.polyfile <- function(filename, nohole = TRUE) {
-    polyfile <- scan(filename, quiet = TRUE)
-    if(nohole) 
-        p <- as(polyfile, "gpc.poly.nohole")
-    else
-        p <- as(polyfile, "gpc.poly")
-    p
+        polyfile <- scan(filename, quiet = TRUE)
+        if(nohole) 
+                as(polyfile, "gpc.poly.nohole")
+        else
+                as(polyfile, "gpc.poly")
 }
 
 ## Write a "gpc.poly" object to a text file
