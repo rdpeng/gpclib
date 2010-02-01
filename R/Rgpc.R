@@ -346,28 +346,3 @@ write.polyfile <- function(poly, filename = "GPCpoly.txt") {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-##     setAs("gpc.poly.nohole", "numeric",
-##           function(from, to) {
-##               flatten.poly <- function(poly) {
-##                   num.contours <- length(poly@pts)
-##                   flat <- lapply(poly@pts, function(p)
-##                              {
-##                                  v <- as.vector(t(cbind(p$x, p$y)))
-##                                  c(length(p$x), v)
-##                              })
-##                   c(num.contours, unlist(flat))
-##               }
-##               flatten.poly(from)
-##           })
-
