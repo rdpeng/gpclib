@@ -305,6 +305,12 @@ setAs("gpc.poly", "matrix",
       })
 
 
+setAs("list", "gpc.poly",
+      function(from) {
+              as(cbind(from$x,from$y), "gpc.poly")
+      })
+
+
 ## Read a polygon from a file
 
 read.polyfile <- function(filename, nohole = TRUE) {
