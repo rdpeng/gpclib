@@ -1,7 +1,7 @@
 \name{gpc.poly-class}
 \docType{class}
 \alias{gpc.poly-class}
-\alias{[,gpc.poly-method}
+\alias{[,gpc.poly,ANY,ANY-method}
 \alias{append.poly,gpc.poly,gpc.poly-method}
 \alias{area.poly,gpc.poly-method}
 \alias{coerce,matrix,gpc.poly-method}
@@ -9,6 +9,7 @@
 \alias{coerce,gpc.poly,matrix-method}
 \alias{coerce,gpc.poly,numeric-method}
 \alias{coerce,numeric,gpc.poly-method}
+\alias{coerce,list,gpc.poly-method}
 \alias{get.bbox,gpc.poly-method}
 \alias{get.pts,gpc.poly-method}
 \alias{intersect,gpc.poly,gpc.poly-method}
@@ -31,7 +32,7 @@
 }
 \section{Slots}{
   \describe{
-    \item{\code{pts}:}{Object of class \code{"list"}.  Actually,
+    \item{pts}{Object of class \dQuote{list}.  Actually,
       \code{pts} is a list of lists with length equal to the number of
       contours in the \code{"gpc.poly"} object.  Each element of
       \code{pts} is a list of length 3 with names \code{x}, \code{y},
@@ -50,6 +51,7 @@
     \item{coerce}{\code{signature(from = "gpc.poly", to = "matrix")}: ... }
     \item{coerce}{\code{signature(from = "gpc.poly", to = "numeric")}: ... }
     \item{coerce}{\code{signature(from = "numeric", to = "gpc.poly")}: ... }
+    \item{coerce}{\code{signature(from = "list", to = "gpc.poly")}: ... }
     \item{get.bbox}{\code{signature(x = "gpc.poly")}: ... }
     \item{get.pts}{\code{signature(object = "gpc.poly")}: ... }
     \item{intersect}{\code{signature(x = "gpc.poly", y = "gpc.poly")}: ... }

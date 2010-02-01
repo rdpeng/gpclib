@@ -10,16 +10,16 @@
 }
 \section{Objects from the Class}{
   Objects can be created by calls of the form
-  \code{new("gpc.poly.nohole", ...) or by calling \code{read.polyfile}}.
+  \sQuote{new("gpc.poly.nohole", ...) or by calling \code{read.polyfile}}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{pts}:}{Object of class \code{"list"}.  See the help for
-      \code{"gpc.poly"} for details.}
+    \item{pts}{Object of class \dQuote{list}.  See the help for
+      \dQuote{gpc.poly} for details.}
   }
 }
 \section{Extends}{
-Class \code{"gpc.poly"}, directly.
+Class \dQuote{gpc.poly}, directly.
 }
 \section{Methods}{
   \describe{
@@ -28,14 +28,14 @@ Class \code{"gpc.poly"}, directly.
 }
 \author{Roger D. Peng}
 \note{
-  This class is identical to \code{"gpc.poly"} and is needed because the
+  This class is identical to \dQuote{"gpc.poly"} and is needed because the
   file formats for polygons without holes is slightly different from the
-  file format for polygons with holes.  For a \code{"gpc.poly.nohole"}
-  object, the \code{hole} flag for each contour is always \code{FALSE}.
+  file format for polygons with holes.  For a \dQuote{gpc.poly.nohole}
+  object, the \verb{hole} flag for each contour is always \code{FALSE}.
 
   Also, \code{write.polyfile} will write the correct file format,
-  depending on whether the object is of class \code{"gpc.poly"} or
-  \code{"gpc.poly.nohole"}.
+  depending on whether the object is of class \dQuote{gpc.poly} or
+  \dQuote{gpc.poly.nohole}.
 }
 
 \seealso{
