@@ -2,6 +2,7 @@
 \docType{class}
 \alias{gpc.poly-class}
 \alias{[,gpc.poly,ANY,ANY-method}
+\alias{[,gpc.poly-method}
 \alias{append.poly,gpc.poly,gpc.poly-method}
 \alias{area.poly,gpc.poly-method}
 \alias{coerce,matrix,gpc.poly-method}
