@@ -1,7 +1,8 @@
 
-R version 2.10.1 Patched (--)
-Copyright (C)  The R Foundation for Statistical Computing
+R version 2.13.1 Patched (2011-07-21 r56474)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -29,7 +30,7 @@ GPC Polygon
    Num. Contours:  1 
    Num. Vertices:  9 
    BBox (X):  -2.271925 --> 2.581959 
-   BBox (Y):  -2.136494 --> 2.168600 
+   BBox (Y):  -2.136494 --> 2.1686 
 > 
 > b <- cbind(rnorm(100), rnorm(100))
 > b <- as(b[chull(b), ], "gpc.poly")
