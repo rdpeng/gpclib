@@ -7,3 +7,4 @@ clip <- to_numeric(p); str(clip)
 
 ## Crashes R 2.14 and 2.15 (32-bit) on Windows
 vec <- .Call("Rgpc_polygon_clip", vec, clip, 3, PACKAGE="gpclib")
+str(vec)

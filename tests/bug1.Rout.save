@@ -1,0 +1,34 @@
+
+R version 2.15.1 RC (2012-06-19 r59582) -- "Roasted Marshmallows"
+Copyright (C) 2012 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin11.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> suppressMessages(library(gpclib))
+> to_numeric <- selectMethod(coerce, c("gpc.poly", "numeric"))
+> load("bug1_data.RData")
+> plot(p)  ## loads a polygon, looks fine
+> plot(as(vec, "gpc.poly"))  ## looks fine
+> clip <- to_numeric(p); str(clip)
+ num [1:17] 1 7 0 570545 7890092 ...
+> 
+> ## Crashes R 2.14 and 2.15 (32-bit) on Windows
+> vec <- .Call("Rgpc_polygon_clip", vec, clip, 3, PACKAGE="gpclib")
+> str(vec)
+ num [1:2897] 73 123 0 682583 7914514 ...
+> 
+> proc.time()
+   user  system elapsed 
+  0.567   0.055   0.906 
