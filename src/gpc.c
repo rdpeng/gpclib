@@ -41,6 +41,8 @@ Copyright: (C) 1997-2004, Advanced Interfaces Group,
 #include <stdlib.h>
 #include <float.h>
 #include <math.h>
+#include <R.h>
+#include <Rinternals.h>
 
 
 /*
@@ -101,12 +103,9 @@ Copyright: (C) 1997-2004, Advanced Interfaces Group,
                             do {(d)= (d)->next;} while (!(d)->outp[(p)]); \
                             (i)= (d)->bot.x + (d)->dx * ((j)-(d)->bot.y);}
 
-#define MALLOC(p, b, s, t) {if ((b) > 0) { \
-                            p= (t*)malloc(b); if (!(p)) { \
-                            fprintf(stderr, "gpc malloc failure: %s\n", s); \
-                            exit(0);}} else p= NULL;}
+#define MALLOC(p, b, s, t) { if(b > 0) {p = (t *)Calloc(b, char); }}
 
-#define FREE(p)            {if (p) {free(p); (p)= NULL;}}
+#define FREE(p)            {if (p) {Free(p); (p)= NULL;}}
 
 
 /*
