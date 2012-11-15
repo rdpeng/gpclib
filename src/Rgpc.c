@@ -10,10 +10,10 @@
 
 /* These macros are copied from the GPC C code */
 #ifndef MALLOC
-#define MALLOC(p, b, s)    {if ((b) > 0) { \
-                            p= malloc(b); if (!(p)) { \
-                            fprintf(stderr, "gpc malloc failure: %s\n", s); \
-		            exit(0);}} else p= NULL;}
+#define MALLOC(p, b, s)    { if ((b) > 0) {				      \
+		 p = malloc(b); if (!(p)) {				\
+		 error("gpc malloc failure: %s\n", s);		\
+		 }} else p= NULL;}
 #endif
 
 #ifndef FREE
