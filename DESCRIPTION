@@ -1,7 +1,6 @@
 Package:  gpclib
 Depends:  R (>= 2.14.0), methods
 Imports:  graphics
-LazyLoad:  yes
 Version:  1.5-5
 Date:  2013-04-01
 Title:  General Polygon Clipping Library for R
