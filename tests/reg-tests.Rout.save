@@ -1,8 +1,7 @@
 
-R version 2.13.1 Patched (2011-07-21 r56474)
-Copyright (C) 2011 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
-Platform: x86_64-apple-darwin10.8.0 (64-bit)
+R version 3.3.0 Patched (2016-05-12 r70603) -- "Supposedly Educational"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.4.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -71,7 +70,7 @@ GPC Polygon
 > ## Highlight the difference p2 \ p1 in blue
 > plot(sdif <- setdiff(p2, p1), poly.args = list(col = 4), add = TRUE)
 > str(sdif)
-Formal class 'gpc.poly' [package "gpclib"] with 1 slots
+Formal class 'gpc.poly' [package "gpclib"] with 1 slot
   ..@ pts:List of 1
   .. ..$ :List of 3
   .. .. ..$ x   : num [1:71] 319 319 319 319 319 ...
@@ -81,7 +80,7 @@ Formal class 'gpc.poly' [package "gpclib"] with 1 slots
 > ## Plot the union of the two polygons
 > plot(un <- union(p1, p2))
 > str(un)
-Formal class 'gpc.poly' [package "gpclib"] with 1 slots
+Formal class 'gpc.poly' [package "gpclib"] with 1 slot
   ..@ pts:List of 2
   .. ..$ :List of 3
   .. .. ..$ x   : num [1:120] 318 318 318 318 318 ...
@@ -96,7 +95,7 @@ Formal class 'gpc.poly' [package "gpclib"] with 1 slots
 > ## combining the two contours
 > p.comb <- append.poly(setdiff(p1, p2), setdiff(p2, p1))
 > str(p.comb)
-Formal class 'gpc.poly' [package "gpclib"] with 1 slots
+Formal class 'gpc.poly' [package "gpclib"] with 1 slot
   ..@ pts:List of 2
   .. ..$ :List of 3
   .. .. ..$ x   : num [1:112] 318 318 318 318 318 ...
@@ -224,3 +223,6 @@ Formal class 'gpc.poly' [package "gpclib"] with 1 slots
 [86,] 0.41006246 0.7537399
 [87,] 0.19271339 0.7723820
 > 
+> proc.time()
+   user  system elapsed 
+  0.280   0.030   0.301 
