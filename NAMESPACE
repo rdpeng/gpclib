@@ -9,4 +9,4 @@ exportMethods("show", "get.bbox", "plot", "intersect", "union",
 
 export("read.polyfile", "write.polyfile")
 
-useDynLib(gpclib)
+useDynLib(gpclib, .registration = TRUE)

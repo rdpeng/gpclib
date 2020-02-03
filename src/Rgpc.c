@@ -6,6 +6,7 @@
 #include <R.h>
 #include <Rinternals.h>
 #include <Rdefines.h>
+#include <R_ext/Rdynload.h>
 #include "gpc.h"
 
 /* These macros are copied from the GPC C code */
@@ -24,8 +25,6 @@
 static int compute_polygon_size(gpc_polygon *p);
 static void gpc_polygon_to_double(double *a, int na, gpc_polygon *p);
 static void double_to_gpc_polygon(gpc_polygon *p, double *a, int na);
-
-
 
 SEXP Rgpc_polygon_clip(SEXP subjpoly, SEXP clippoly, SEXP op) {
     gpc_polygon subject, clip, result;
@@ -108,6 +107,26 @@ SEXP Rgpc_polygon_to_tristrip(SEXP poly) {
     return(returnval);
   
 }
+
+
+
+static const R_CallMethodDef callMethods[]  = {
+        {"Rgpc_polygon_clip", (DL_FUNC) &Rgpc_polygon_clip, 3},
+        {"Rgpc_polygon_to_tristrip", (DL_FUNC) &Rgpc_polygon_to_tristrip, 1},
+        {NULL, NULL, 0}
+};
+
+void R_init_gpclib(DllInfo *info) {
+        R_registerRoutines(info, NULL, callMethods, NULL, NULL);
+        R_useDynamicSymbols(info, FALSE);
+        R_forceSymbols(info, TRUE);
+}
+
+void R_unload_gpclib(DllInfo *info) {
+        /* Release resources. */
+}
+
+
 
 /* unserialize the polygon */
 
