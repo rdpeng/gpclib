@@ -1,8 +1,7 @@
 
-R version 2.15.1 RC (2012-06-19 r59582) -- "Roasted Marshmallows"
-Copyright (C) 2012 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
-Platform: x86_64-apple-darwin11.4.0 (64-bit)
+R version 3.6.2 Patched (2020-01-25 r77759) -- "Dark and Stormy Night"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin19.2.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -25,10 +24,10 @@ Type 'q()' to quit R.
  num [1:17] 1 7 0 570545 7890092 ...
 > 
 > ## Crashes R 2.14 and 2.15 (32-bit) on Windows
-> vec <- .Call("Rgpc_polygon_clip", vec, clip, 3, PACKAGE="gpclib")
+> vec <- .Call(gpclib:::C_Rgpc_polygon_clip, vec, clip, 3)
 > str(vec)
  num [1:2897] 73 123 0 682583 7914514 ...
 > 
 > proc.time()
    user  system elapsed 
-  0.567   0.055   0.906 
+  0.213   0.035   0.238 
