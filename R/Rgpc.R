@@ -80,7 +80,7 @@ setMethod("intersect", signature(x = "gpc.poly", y = "gpc.poly"),
           function(x, y) {
               subject <- as(x, "numeric")
               clip <- as(y, "numeric")
-              vec <- .Call("Rgpc_polygon_clip", subject, clip, 1)
+              vec <- .Call(C_Rgpc_polygon_clip, subject, clip, 1)
 
               if(identical(vec, 0)) 
                   rval <- new("gpc.poly")
@@ -94,7 +94,7 @@ setMethod("setdiff", signature(x = "gpc.poly", y = "gpc.poly"),
           function(x, y) {
               subject <- as(x, "numeric")
               clip <- as(y, "numeric")
-              vec <- .Call("Rgpc_polygon_clip", subject, clip, 2);
+              vec <- .Call(C_Rgpc_polygon_clip, subject, clip, 2);
 
               if(identical(vec, 0)) 
                   rval <- new("gpc.poly")

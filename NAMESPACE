@@ -1,3 +1,5 @@
+useDynLib(gpclib, .registration = TRUE, .fixes = "C_")
+
 importFrom(graphics, plot)
 import(methods)
 
@@ -9,4 +11,3 @@ exportMethods("show", "get.bbox", "plot", "intersect", "union",
 
 export("read.polyfile", "write.polyfile")
 
-useDynLib(gpclib, .registration = TRUE)
