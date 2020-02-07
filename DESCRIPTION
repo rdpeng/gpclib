@@ -7,5 +7,4 @@ Maintainer:  Roger D. Peng <rpeng@jhsph.edu>
 License:  file LICENSE
 Depends:  R (>= 3.0.0), methods
 Imports:  graphics
-Date:  2014-02-10
 URL:  http://www.cs.man.ac.uk/~toby/gpc/, http://github.com/rdpeng/gpclib
