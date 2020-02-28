@@ -1029,52 +1029,6 @@ void gpc_free_polygon(gpc_polygon *p)
 }
 
 
-void gpc_read_polygon(FILE *fp, int read_hole_flags, gpc_polygon *p)
-{
-  int c, v;
-
-  fscanf(fp, "%d", &(p->num_contours));
-  MALLOC(p->hole, p->num_contours * sizeof(int),
-         "hole flag array creation", int);
-  MALLOC(p->contour, p->num_contours
-         * sizeof(gpc_vertex_list), "contour creation", gpc_vertex_list);
-  for (c= 0; c < p->num_contours; c++)
-  {
-    fscanf(fp, "%d", &(p->contour[c].num_vertices));
-
-    if (read_hole_flags)
-      fscanf(fp, "%d", &(p->hole[c]));
-    else
-      p->hole[c]= FALSE; /* Assume all contours to be external */
-
-    MALLOC(p->contour[c].vertex, p->contour[c].num_vertices
-           * sizeof(gpc_vertex), "vertex creation", gpc_vertex);
-    for (v= 0; v < p->contour[c].num_vertices; v++)
-      fscanf(fp, "%lf %lf", &(p->contour[c].vertex[v].x),
-                            &(p->contour[c].vertex[v].y));
-  }
-}
-
-
-void gpc_write_polygon(FILE *fp, int write_hole_flags, gpc_polygon *p)
-{
-  int c, v;
-
-  fprintf(fp, "%d\n", p->num_contours);
-  for (c= 0; c < p->num_contours; c++)
-  {
-    fprintf(fp, "%d\n", p->contour[c].num_vertices);
-
-    if (write_hole_flags)
-      fprintf(fp, "%d\n", p->hole[c]);
-    
-    for (v= 0; v < p->contour[c].num_vertices; v++)
-      fprintf(fp, "% .*f % .*f\n",
-              DBL_DIG, p->contour[c].vertex[v].x,
-              DBL_DIG, p->contour[c].vertex[v].y);
-  }
-}
-
 
 void gpc_add_contour(gpc_polygon *p, gpc_vertex_list *new_contour, int hole)
 {
