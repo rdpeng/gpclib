@@ -1,6 +1,6 @@
 /*
   gpclib:  General Polygon Clipping library for R
-  Copyright (C) 2003 Roger D. Peng <rpeng@jhsph.edu>
+  Copyright (C) 2003--2022 Roger D. Peng <rpeng@jhsph.edu>
 */
 
 #include <R.h>
