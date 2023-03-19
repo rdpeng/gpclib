@@ -7,24 +7,6 @@
 setClass("gpc.poly", representation(pts = "list"))
 setClass("gpc.poly.nohole", "gpc.poly")
 
-## setValidity("gpc.poly",
-##             function(x) {
-##                 pts <- x@pts
-##                 lens <- sapply(pts, length)
-##                 if(!identical(all(lens == 3), TRUE))
-##                     "Not all contours have correct elements"
-##                 ## correct names (x, y, hole)
-##                 contour.names <- lapply(pts, names)
-##                 correct.names <- c("x", "y", "hole")
-##                 check <- lapply(contour.names, function(n) {
-##                     n %in% correct.names
-##                 })
-##                 if(!identical(all(sapply(check, all)), TRUE))
-##                     "Incorrect list names in contours"
-##                 ## correct types
-##                 ## equal lengths?
-##             })
-
 setMethod("show", "gpc.poly",
           function(object) {
               cat("GPC Polygon\n")
