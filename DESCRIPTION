@@ -1,7 +1,7 @@
 Package:  gpclib
 Title:  General Polygon Clipping Library for R
 Description:  General polygon clipping routines for R based on Alan Murta's C library.
-Version:  1.6
+Version:  1.6-1
 Author:  Roger D. Peng <rpeng@jhsph.edu> with contributions from Duncan Murdoch and Barry Rowlingson; GPC library by Alan Murta
 Maintainer:  Roger D. Peng <rpeng@jhsph.edu>
 License:  MIT + file LICENSE
