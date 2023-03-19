@@ -107,7 +107,7 @@ setMethod("union", signature(x = "gpc.poly", y = "gpc.poly"),
           function(x, y) {
               subject <- as(x, "numeric")
               clip <- as(y, "numeric")
-              vec <- .Call("Rgpc_polygon_clip", subject, clip, 3);
+              vec <- .Call(C_Rgpc_polygon_clip, subject, clip, 3);
 
               if(identical(vec, 0)) 
                   rval <- new("gpc.poly")
@@ -122,7 +122,7 @@ setGeneric("tristrip", function(x)
 setMethod("tristrip", signature(x = "gpc.poly"),
 	  function(x) {
 	      poly <- as(x, "numeric")
-	      result <- .Call("Rgpc_polygon_to_tristrip", poly)
+	      result <- .Call(C_Rgpc_polygon_to_tristrip, poly)
 	      result <- lapply(result, function(strip) matrix(strip, ncol=2, byrow=TRUE))
 	  })
 
